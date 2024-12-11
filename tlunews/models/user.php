@@ -1,21 +1,41 @@
 <?php
 
-session_start();
-if (isset($_POST['login'])) {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $user = $_POST['username'];
-        $pass = $_POST['password'];
+class user{
+    private $id, $username, $password, $role;
 
-        if ($user == 'admin' && $pass == 'admin') {
-            $_SESSION['isLoggined'] = 'admin';
-            header("Location: ../views/home/index.php");
-        } else {
-            header("Location: ../login.php?message=Invalid username or password");
-        }
+
+    public function __construct($id, $username, $password, $role)
+    {
+        $this->id = $id;
+        $this->username = $username;
+        $this->password = $password;
+        $this->role = $role;
     }
-else if(isset($_POST['signup'])){
-    if($_POST['password'] == $_POST['conf_password']){
-        //query dang ky
+
+    public function getId(){
+        return $this->id;
     }
+    public function getUsername(){
+        return $this->username;
+    }
+    public function getPassword(){
+        return $this->password;
+    }
+    public function getRole(){
+        return $this->role;
+    }
+
+    public function setUsername($username){
+        $this->username = $username;
+    }
+    public function setPassword($password){
+        $this->password = $password;
+    }
+    public function setRole($role){
+        $this->role = $role;
+    }
+
 }
-}
+
+
+?>
